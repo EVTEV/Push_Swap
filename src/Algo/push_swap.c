@@ -37,12 +37,15 @@ void	sort_stack(t_stack *a, t_stack *b)
 
 void	push_swap(t_stack *a, t_stack *b)
 {
-	if (!a || !a->top || a->size <= 1)
-		return ;
-	if (a->size == 2)
-		sa(a);
-	else if (a->size == 3)
-		sort_three(a);
-	else
-		sort_stack(a, b);
+	if (!is_sorted(a))
+	{
+		if (!a || !a->top || a->size <= 1)
+			return ;
+		if (a->size == 2)
+			sa(a);
+		else if (a->size == 3)
+			sort_three(a);
+		else
+			sort_stack(a, b);
+	}
 }
