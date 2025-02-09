@@ -36,7 +36,41 @@ t_node	*get_min_node(t_stack *stack)
 	return (min);
 }
 
-void	move_to_top(t_stack *stack, t_node *target)
+t_node	*find_target_node(t_stack *stack, int start, int end)
+{
+	t_node	*current;
+	t_node	*best;
+	int		best_pos;
+	int		curr_pos;
+
+	best = NULL;
+	best_pos = stack->size;
+	current = stack->top;
+	curr_pos = 0;
+	while (current)
+	{
+		if (current->index >= start && current->index <= end)
+		{
+			if (!best || curr_pos < best_pos)
+			{
+				best = current;
+				best_pos = curr_pos;
+			}
+		}
+		current = current->next;
+		curr_pos++;
+	}
+	return (best);
+}
+
+int	get_size_node(int size)
+{
+	if (size <= 100)
+		return (size / 5);
+	return (size / 11);
+}
+
+int	get_pos_node(t_stack *stack, t_node *target)
 {
 	t_node	*current;
 	int		pos;
@@ -48,14 +82,5 @@ void	move_to_top(t_stack *stack, t_node *target)
 		pos++;
 		current = current->next;
 	}
-	if (pos <= stack->size / 2)
-	{
-		while (stack->top != target)
-			rotate(stack);
-	}
-	else
-	{
-		while (stack->top != target)
-			reverse(stack);
-	}
+	return (pos);
 }

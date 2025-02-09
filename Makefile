@@ -19,12 +19,12 @@ SRC = $(wildcard $(SRC_DIR)/Stack/*.c) \
 	  $(wildcard $(SRC_DIR)/Node/*.c) \
 	  $(wildcard $(SRC_DIR)/Algo/*.c) \
 	  $(wildcard $(SRC_DIR)/Utils/*.c) \
-	  main.c 
+	  main.c
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g #-gdwarf-4
+CFLAGS = -Wall -Wextra -Werror #-g -gdwarf-4
 RM = @rm -rf
 AR = ar -rcs
 
