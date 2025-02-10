@@ -13,6 +13,23 @@ void	sort_three(t_stack *a)
 		sa(a);
 }
 
+void	sort_four(t_stack *a, t_stack *b)
+{
+	t_node	*min;
+
+	min = get_min_node(a);
+	while (a->top != min)
+	{
+		if (get_pos_node(a, min) <= 2)
+			ra(a);
+		else
+			rra(a);
+	}
+	pb(b, a);
+	sort_three(a);
+	pa(a, b);
+}
+
 void	sort_stack(t_stack *a, t_stack *b)
 {
 	t_node	*max;
@@ -45,6 +62,8 @@ void	push_swap(t_stack *a, t_stack *b)
 			sa(a);
 		else if (a->size == 3)
 			sort_three(a);
+		else if (a->size == 4)
+			sort_four(a, b);
 		else
 			sort_stack(a, b);
 	}

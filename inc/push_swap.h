@@ -61,6 +61,7 @@ void	push_node(t_stack *a, t_stack *b, int start, int end);
 
 // ---------- Algo ---------- //
 void	sort_three(t_stack *a);
+void	sort_four(t_stack *a, t_stack *b);
 void	sort_stack(t_stack *a, t_stack *b);
 void	push_swap(t_stack *a, t_stack *b);
 
