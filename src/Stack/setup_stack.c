@@ -6,7 +6,7 @@ t_stack	*init_stack(void)
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
-		return NULL;
+		return (NULL);
 	stack->top = NULL;
 	stack->size = 0;
 	return (stack);
