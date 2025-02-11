@@ -20,8 +20,6 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		result = result * 10 + (str[i] - '0');
-		if (result * sign > INT_MAX || result * sign < INT_MIN)
-			error_exit();
 		i++;
 	}
 	return ((int)(result * sign));
@@ -45,7 +43,7 @@ int	is_number(char *str)
 	return (1);
 }
 
-void	check_dup(t_stack *stack)
+int	check_dup(t_stack *stack)
 {
 	t_node	*current;
 	t_node	*check;
@@ -57,14 +55,15 @@ void	check_dup(t_stack *stack)
 		while (check)
 		{
 			if (current->value == check->value)
-				error_exit();
+				return (0);
 			check = check->next;
 		}
 		current = current->next;
 	}
+	return (1);
 }
 
-void	do_split(char **av, t_stack *a)
+void	do_split(char **av, t_stack *a, t_stack *b)
 {
 	char	**num;
 	long	value;
@@ -72,13 +71,15 @@ void	do_split(char **av, t_stack *a)
 
 	num = ft_split(av[1], ' ');
 	if (!num)
-		error_exit();
+		msg_error(a, b);
 	i = 0;
 	while (num[i])
 	{
 		if (!is_number(num[i]))
-			error_exit();
+			msg_error(a, b);
 		value = ft_atoi(num[i]);
+		if (value > INT_MAX || value < INT_MIN)
+			msg_error(a, b);
 		fill_stack(a, value);
 		free(num[i]);
 		i++;
@@ -86,26 +87,29 @@ void	do_split(char **av, t_stack *a)
 	free(num);
 }
 
-void	fill_good(int ac, char **av, t_stack *a)
+void	fill_good(int ac, char **av, t_stack *a, t_stack *b)
 {
 	long	value;
 	int		i;
 
 	if (ac < 2)
-		error_exit();
+		msg_error(a, b);
 	if (ac == 2)
-		do_split(av, a);
+		do_split(av, a, b);
 	else
 	{
 		i = 1;
 		while (i < ac)
 		{
 			if (!is_number(av[i]))
-				error_exit();
+				msg_error(a, b);
 			value = ft_atoi(av[i]);
+			if (value > INT_MAX || value < INT_MIN)
+				msg_error(a, b);
 			fill_stack(a, value);
 			i++;
 		}
+		if (!check_dup(a))
+			msg_error(a, b);
 	}
-	check_dup(a);
 }

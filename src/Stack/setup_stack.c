@@ -6,7 +6,7 @@ t_stack	*init_stack(void)
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
-		error_exit();
+		return NULL;
 	stack->top = NULL;
 	stack->size = 0;
 	return (stack);
@@ -19,7 +19,7 @@ void	fill_stack(t_stack *stack, int value)
 
 	new = (t_node *)malloc(sizeof(t_node));
 	if (!new)
-		error_exit();
+		return ;
 	new->value = value;
 	new->next = NULL;
 	if (!stack->top)
@@ -44,6 +44,8 @@ void	free_stack(t_stack *stack)
 	{
 		next = current->next;
 		free(current);
+		current = NULL;
 		current = next;
 	}
+	free(stack);
 }

@@ -2,7 +2,7 @@ NAME = push_swap
 
 MAKEFLAGS = --no-print-directory
 
-LIBFT_DIR = ./LIBFT
+LIBFT_DIR = ./Libft
 LIBFT = $(LIBFT_DIR)/libft.a
 INC_LIBFT = -I$(LIBFT_DIR)/inc
 LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
@@ -24,7 +24,8 @@ SRC = $(wildcard $(SRC_DIR)/Stack/*.c) \
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-g -gdwarf-4
+CFLAGS = -Wall -Wextra -Werror -g3
+
 RM = @rm -rf
 AR = ar -rcs
 

@@ -20,9 +20,18 @@ int	main(int ac, char **av)
 	t_stack	*a;
 	t_stack	*b;
 
+	a = NULL;
+	b = NULL;
 	a = init_stack();
+	if (!a)
+		return (0);
 	b = init_stack();
-	fill_good(ac, av, a);
+	if (!b)
+	{
+		free_stack(a);
+		return (0);
+	}
+	fill_good(ac, av, a, b);
 	push_swap(a, b);
 	free_stack(a);
 	free_stack(b);

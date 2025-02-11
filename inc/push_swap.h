@@ -24,9 +24,9 @@ void	free_stack(t_stack *stack);
 // ---------- Pars ---------- //
 int		ft_atoi(const char *str);
 int		is_number(char *str);
-void	check_dup(t_stack *stack);
-void	do_split(char **av, t_stack *a);
-void	fill_good(int ac, char **av, t_stack *a);
+int		check_dup(t_stack *stack);
+void	do_split(char **av, t_stack *a, t_stack *b);
+void	fill_good(int ac, char **av, t_stack *a, t_stack *b);
 
 // ---------- Move ---------- //
 // _____pushy.c_____ //
@@ -69,6 +69,6 @@ void	push_swap(t_stack *a, t_stack *b);
 int		is_sorted(t_stack *stack);
 void	index_stack(t_stack *stack);
 void	normalize_stack(t_stack *stack);
-void	error_exit(void);
+void	msg_error(t_stack *a, t_stack *b);
 
 #endif

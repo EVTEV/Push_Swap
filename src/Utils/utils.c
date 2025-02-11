@@ -60,8 +60,12 @@ void	normalize_stack(t_stack *stack)
 	}
 }
 
-void	error_exit(void)
+void	msg_error(t_stack *a, t_stack *b)
 {
 	write(2, "Error\n", 6);
+	if (a)
+		free_stack(a);
+	if (b)
+		free_stack(b);
 	exit(1);
 }
