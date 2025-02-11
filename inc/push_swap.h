@@ -22,7 +22,7 @@ void	fill_stack(t_stack *stack, int value);
 void	free_stack(t_stack *stack);
 
 // ---------- Pars ---------- //
-int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 int		is_number(char *str);
 int		check_dup(t_stack *stack);
 void	do_split(char **av, t_stack *a, t_stack *b);

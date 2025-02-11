@@ -1,6 +1,6 @@
 #include "../../inc/push_swap.h"
 
-int	ft_atoi(const char *str)
+long	ft_atol(const char *str)
 {
 	size_t	i;
 	int		sign;
@@ -22,7 +22,7 @@ int	ft_atoi(const char *str)
 		result = result * 10 + (str[i] - '0');
 		i++;
 	}
-	return ((int)(result * sign));
+	return (result * sign);
 }
 
 int	is_number(char *str)
@@ -77,7 +77,7 @@ void	do_split(char **av, t_stack *a, t_stack *b)
 	{
 		if (!is_number(num[i]))
 			msg_error(a, b);
-		value = ft_atoi(num[i]);
+		value = ft_atol(num[i]);
 		if (value > INT_MAX || value < INT_MIN)
 			msg_error(a, b);
 		fill_stack(a, value);
@@ -103,7 +103,7 @@ void	fill_good(int ac, char **av, t_stack *a, t_stack *b)
 		{
 			if (!is_number(av[i]))
 				msg_error(a, b);
-			value = ft_atoi(av[i]);
+			value = ft_atol(av[i]);
 			if (value > INT_MAX || value < INT_MIN)
 				msg_error(a, b);
 			fill_stack(a, value);
