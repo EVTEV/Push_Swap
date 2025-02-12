@@ -24,7 +24,7 @@ SRC = $(wildcard $(SRC_DIR)/Stack/*.c) \
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror
 
 RM = @rm -rf
 AR = ar -rcs
