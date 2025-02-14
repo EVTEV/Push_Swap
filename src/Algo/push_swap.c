@@ -45,13 +45,15 @@ void	sort_four(t_stack *a, t_stack *b)
 void	sort_stack(t_stack *a, t_stack *b)
 {
 	t_node	*max;
+	int		total;
 	int		size;
 	int		start;
 
 	normalize_stack(a);
+	total = a->sixe;
 	size = get_size_node(a->size);
 	start = 0;
-	while (start < a->size)
+	while (start < total)
 	{
 		push_node(a, b, start, (start + size - 1));
 		start += size;
