@@ -49,15 +49,17 @@ void	fill_stack(t_stack *stack, int value)
 void	free_stack(t_stack *stack)
 {
 	t_node	*current;
-	t_node	*next;
+	t_node	*temp;
 
+	if (!stack)
+		return ;
 	current = stack->top;
 	while (current)
 	{
-		next = current->next;
-		free(current);
-		current = NULL;
-		current = next;
+		temp = current;
+		current = current->next;
+		free(temp);
+		temp = NULL;
 	}
 	free(stack);
 }

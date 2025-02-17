@@ -63,23 +63,29 @@ void	rrr(t_stack *b, t_stack *a);
 // _____get_node.c_____ //
 t_node	*get_max_node(t_stack *stack);
 t_node	*get_min_node(t_stack *stack);
-t_node	*find_target_node(t_stack *stack, int start, int end);
-int		get_size_node(int size);
-int		get_pos_node(t_stack *stack, t_node *target);
 // _____use_node.c_____ //
 void	move_to_top(t_stack *stack, t_node *target);
-void	rotate_to_top(t_stack *stack, t_node *target, char name);
-void	push_node(t_stack *a, t_stack *b, int start, int end);
+
+// ---------- Chunk ---------- //
+// _____get_chunk.c_____ //
+int	get_chunk_size(int stack_size);
 
 // ---------- Algo ---------- //
+// _____chunk_sort.c_____ //
+void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 void	sort_four(t_stack *a, t_stack *b);
+// _____chunk_sort.c_____ //
+int		*stack_to_array(t_stack *stack, int size);
+void	sort_array(int *arr, int size); 
+int		find_pivot(t_stack *stack); 
+// _____push_swap.c_____ //
+void	sort_small(t_stack *a, t_stack *b);
 void	sort_stack(t_stack *a, t_stack *b);
 void	push_swap(t_stack *a, t_stack *b);
 
 // ---------- Utils ---------- //
 int		is_sorted(t_stack *stack);
-void	index_stack(t_stack *stack);
 void	normalize_stack(t_stack *stack);
 void	msg_error(t_stack *a, t_stack *b);
 

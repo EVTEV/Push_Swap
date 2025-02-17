@@ -12,11 +12,13 @@
 
 #include "inc/push_swap.h"
 
-/*
-static void	ft_print_lst(t_stack *stack, char *msg)
+
+static void	print_stack(t_stack *stack, char *msg)
 {
 	t_node	*current;
 
+	if (!stack)
+		return ;
 	current = stack->top;
 	ft_printf("%s\n", msg);
 	while (current)
@@ -25,7 +27,12 @@ static void	ft_print_lst(t_stack *stack, char *msg)
 		current = current->next;
 	}
 }
-*/
+
+void debug_stacks(t_stack *a, t_stack *b) 
+{
+    print_stack(a, "A");
+    print_stack(b, "B");
+}
 
 int	main(int ac, char **av)
 {
@@ -45,6 +52,7 @@ int	main(int ac, char **av)
 	}
 	fill_good(ac, av, a, b);
 	push_swap(a, b);
+	//print_stack(a, "\n");
 	free_stack(a);
 	free_stack(b);
 	return (0);

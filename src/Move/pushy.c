@@ -16,7 +16,7 @@ static void	pushy(t_stack *dest, t_stack *src)
 {
 	t_node	*temp;
 
-	if (!src || !src->top)
+	if (!src || !dest || !src->top)
 		return ;
 	temp = src->top;
 	src->top = src->top->next;

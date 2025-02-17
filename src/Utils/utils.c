@@ -28,48 +28,26 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	index_stack(t_stack *stack)
-{
-	t_node	*current;
-	t_node	*temp;
-	int		index;
-
-	current = stack->top;
-	while (current)
-	{
-		index = 0;
-		temp = stack->top;
-		while (temp)
-		{
-			if (current->value > temp->value)
-				index++;
-			temp = temp->next;
-		}
-		current->index = index;
-		current = current->next;
-	}
-}
-
 void	normalize_stack(t_stack *stack)
 {
 	t_node	*current;
 	t_node	*compare;
-	int		i;
+	int		index;
 
 	current = stack->top;
 	while (current)
-	{
-		i = 0;
+    {
+		index = 0;
 		compare = stack->top;
 		while (compare)
 		{
 			if (current->value > compare->value)
-				i++;
+				index++;
 			compare = compare->next;
 		}
-		current->index = i;
+		current->index = index;
 		current = current->next;
-	}
+    }
 }
 
 void	msg_error(t_stack *a, t_stack *b)
