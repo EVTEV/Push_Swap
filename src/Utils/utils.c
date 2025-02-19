@@ -36,7 +36,7 @@ void	normalize_stack(t_stack *stack)
 
 	current = stack->top;
 	while (current)
-    {
+	{
 		index = 0;
 		compare = stack->top;
 		while (compare)
@@ -47,7 +47,7 @@ void	normalize_stack(t_stack *stack)
 		}
 		current->index = index;
 		current = current->next;
-    }
+	}
 }
 
 void	msg_error(t_stack *a, t_stack *b)

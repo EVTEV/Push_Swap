@@ -47,5 +47,3 @@ t_node	*get_min_node(t_stack *stack)
 	}
 	return (min);
 }
-
-

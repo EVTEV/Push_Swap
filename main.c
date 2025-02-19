@@ -12,7 +12,6 @@
 
 #include "inc/push_swap.h"
 
-
 static void	print_stack(t_stack *stack, char *msg)
 {
 	t_node	*current;
@@ -26,12 +25,6 @@ static void	print_stack(t_stack *stack, char *msg)
 		ft_printf("%d\n", current->value);
 		current = current->next;
 	}
-}
-
-void debug_stacks(t_stack *a, t_stack *b) 
-{
-    print_stack(a, "A");
-    print_stack(b, "B");
 }
 
 int	main(int ac, char **av)

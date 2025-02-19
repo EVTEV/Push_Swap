@@ -12,29 +12,42 @@
 
 #include "../../inc/push_swap.h"
 
-void	move_to_top(t_stack *stack, t_node *target)
+int	get_node_position(t_stack *stack, t_node *target)
 {
 	t_node	*current;
 	int		pos;
 
-	pos = 0;
 	current = stack->top;
-	while (current != target)
+	pos = 0;
+	while (current && current != target)
 	{
 		pos++;
 		current = current->next;
 	}
-	if (pos <= stack->size / 2)
+	return (pos);
+}
+
+void	move_to_top(t_stack *stack, t_node *target)
+{
+	int	pos;
+	int	middle;
+
+	pos = get_node_position(stack, target);
+	middle = stack->size / 2;
+	if (pos <= middle)
 	{
-		while (stack->top != target)
-			rotate(stack);
+		while (pos > 0)
+		{
+			ra(stack);
+			pos--;
+		}
 	}
 	else
 	{
-		while (stack->top != target)
-			reverse(stack);
+		while (pos < stack->size)
+		{
+			rra(stack);
+			pos++;
+		}
 	}
 }
-
-
-
