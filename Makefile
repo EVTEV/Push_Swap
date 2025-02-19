@@ -17,6 +17,7 @@ SRC = $(wildcard $(SRC_DIR)/Stack/*.c) \
 	  $(wildcard $(SRC_DIR)/Pars/*.c) \
 	  $(wildcard $(SRC_DIR)/Move/*.c) \
 	  $(wildcard $(SRC_DIR)/Node/*.c) \
+	  $(wildcard $(SRC_DIR)/Chunk/*.c) \
 	  $(wildcard $(SRC_DIR)/Algo/*.c) \
 	  $(wildcard $(SRC_DIR)/Utils/*.c) \
 	  main.c

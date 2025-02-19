@@ -20,23 +20,12 @@ void	sort_small(t_stack *a, t_stack *b)
 		sort_three(a);
 	else if (a->size == 4)
 		sort_four(a, b);
+	else if (a->size == 5)
+		sort_five(a, b);
 }
- 
-void	sort_chunk(t_stack *a, t_stack *b)
-{
-	int	chunk_size;
-	int	current_chunk;
 
-	chunk_size = get_chunk_size(a->size);
-	current_chunk = 0;
-	while (current_chunk * chunk_size < a->size)
-    {
-		push_chunk_to_b(a, b, current_chunk, chunk_size);
-		current_chunk++;
-    }
-	while (b->size > 0)
-		push_max_to_a(a, b);
-}
+//void	sort_chunk(t_stack *a, t_stack *b)
+
 
 void	push_swap(t_stack *a, t_stack *b) 
 {
@@ -44,11 +33,9 @@ void	push_swap(t_stack *a, t_stack *b)
 	{
         if (!a || !a->top || a->size <= 1)
             return ;
-        if (a->size == 2)
-            sa(a);
-        else if (a->size == 3)
-            sort_three(a);
-        else
-            sort_stack(a, b);
+        if (a->size <= 5)
+            sort_small(a, b);
+        //else
+          //  sort_chunk(a, b);
     }
 }

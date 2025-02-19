@@ -66,22 +66,17 @@ t_node	*get_min_node(t_stack *stack);
 // _____use_node.c_____ //
 void	move_to_top(t_stack *stack, t_node *target);
 
-// ---------- Chunk ---------- //
-// _____get_chunk.c_____ //
-int	get_chunk_size(int stack_size);
-
 // ---------- Algo ---------- //
-// _____chunk_sort.c_____ //
+// _____sort_small.c_____ //
 void	sort_two(t_stack *a);
 void	sort_three(t_stack *a);
 void	sort_four(t_stack *a, t_stack *b);
-// _____chunk_sort.c_____ //
-int		*stack_to_array(t_stack *stack, int size);
-void	sort_array(int *arr, int size); 
-int		find_pivot(t_stack *stack); 
+void	sort_five(t_stack *a, t_stack *b);
+// _____sort_chunk.c_____ //
+int		get_chunk_size(int	size);
 // _____push_swap.c_____ //
 void	sort_small(t_stack *a, t_stack *b);
-void	sort_stack(t_stack *a, t_stack *b);
+//void	sort_chunk(t_stack *a, t_stack *b);
 void	push_swap(t_stack *a, t_stack *b);
 
 // ---------- Utils ---------- //
