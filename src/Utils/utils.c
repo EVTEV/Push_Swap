@@ -12,6 +12,21 @@
 
 #include "../../inc/push_swap.h"
 
+int	get_chunk_size(int size)
+{
+	if (size <= 4)
+		return (1);
+	else if (size <= 50)
+		return (4);
+	else if (size <= 100)
+		return (6);
+	else if (size <= 250)
+		return (8);
+	else if (size <= 500)
+		return (12);
+	return (15);
+}
+
 int	is_sorted(t_stack *stack)
 {
 	t_node	*current;
@@ -28,25 +43,24 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-void	normalize_stack(t_stack *stack)
+void	align_stack(t_stack *a)
 {
-	t_node	*current;
-	t_node	*compare;
-	int		index;
+	t_node	*min;
+	int		min_pos;
+	int		rotation;
 
-	current = stack->top;
-	while (current)
+	min = get_min_node(a);
+	min_pos = get_node_position(a, min);
+	if (min_pos > a->size / 2)
+		rotation = a->size - min_pos;
+	else
+		rotation = min_pos;
+	while (rotation--)
 	{
-		index = 0;
-		compare = stack->top;
-		while (compare)
-		{
-			if (current->value > compare->value)
-				index++;
-			compare = compare->next;
-		}
-		current->index = index;
-		current = current->next;
+		if (min_pos > a->size / 2)
+			rra(a);
+		else
+			ra(a);
 	}
 }
 

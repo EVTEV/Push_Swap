@@ -24,28 +24,50 @@ void	sort_small(t_stack *a, t_stack *b)
 		sort_five(a, b);
 }
 
-void	sort_chunk(t_stack *a, t_stack *b)
+static void	sort_chunk(t_stack *a, t_stack *b)
 {
 	int	chunk_size;
-	int	chunk_start;
-	int	i;
-	int	total_chunks;
+	int	current_chunk;
+	int	target_max;
+	int	pushed;
 
 	chunk_size = get_chunk_size(a->size);
-	total_chunks = (a->size + chunk_size - 1) / chunk_size;
-	i = 0;
-	while (i < total_chunks)
+	current_chunk = 0;
+    while (a->size > 3) 
 	{
-		chunk_start = i * chunk_size;
-		process_chunk(a, b, chunk_start,
-			chunk_start + chunk_size - 1);
-		i++;
+		target_max = (current_chunk + 1) * chunk_size;
+		pushed = 0;
+		while (pushed < chunk_size && a->size > 3) 
+		{
+			if (a->top->index <= target_max) 
+			{
+				pb(b, a);
+				pushed++;
+			}
+			else
+                ra(a);
+        }
+		current_chunk++;
 	}
-	while (b->size > 0)
+	sort_three(a);
+}
+
+static void	merge_stack(t_stack *a, t_stack *b) 
+{
+	t_node	*best_move;
+
+   	while (b->size) 
 	{
-		move_to_top(b, get_max_node(b));
-		pa(a, b);
-	}
+        best_move = find_best_node(a, b);
+        execute_move(a, b, best_move);
+    }    
+    align_stack(a);
+}
+
+void	sort_stack(t_stack *a, t_stack *b)
+{
+	sort_chunk(a, b);
+    merge_stack(a, b);
 }
 
 void	push_swap(t_stack *a, t_stack *b)
@@ -57,6 +79,6 @@ void	push_swap(t_stack *a, t_stack *b)
 		if (a->size <= 5)
 			sort_small(a, b);
 		else
-			sort_chunk(a, b);
+			sort_stack(a, b);
 	}
 }

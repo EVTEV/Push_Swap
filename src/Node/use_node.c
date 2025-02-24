@@ -27,27 +27,17 @@ int	get_node_position(t_stack *stack, t_node *target)
 	return (pos);
 }
 
-void	move_to_top(t_stack *stack, t_node *target)
+t_node	*find_node_by_value(t_stack *stack, int value)
 {
-	int	pos;
-	int	middle;
+    t_node	*current = stack->top;
 
-	pos = get_node_position(stack, target);
-	middle = stack->size / 2;
-	if (pos <= middle)
+	current = stack->top;
+    while (current)
 	{
-		while (pos > 0)
-		{
-			ra(stack);
-			pos--;
-		}
-	}
-	else
-	{
-		while (pos < stack->size)
-		{
-			rra(stack);
-			pos++;
-		}
-	}
+        if (current->value == value)
+            return current;
+        current = current->next;
+    }
+    return (NULL);
 }
+
