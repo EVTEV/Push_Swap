@@ -29,15 +29,14 @@ int	get_node_position(t_stack *stack, t_node *target)
 
 t_node	*find_node_by_value(t_stack *stack, int value)
 {
-    t_node	*current = stack->top;
+	t_node	*current;
 
 	current = stack->top;
-    while (current)
+	while (current)
 	{
-        if (current->value == value)
-            return current;
-        current = current->next;
-    }
-    return (NULL);
+		if (current->value == value)
+			return (current);
+		current = current->next;
+	}
+	return (NULL);
 }
-

@@ -33,41 +33,41 @@ static void	sort_chunk(t_stack *a, t_stack *b)
 
 	chunk_size = get_chunk_size(a->size);
 	current_chunk = 0;
-    while (a->size > 3) 
+	while (a->size > 3)
 	{
 		target_max = (current_chunk + 1) * chunk_size;
 		pushed = 0;
-		while (pushed < chunk_size && a->size > 3) 
+		while (pushed < chunk_size && a->size > 3)
 		{
-			if (a->top->index <= target_max) 
+			if (a->top->index <= target_max)
 			{
 				pb(b, a);
 				pushed++;
 			}
 			else
-                ra(a);
-        }
+				ra(a);
+		}
 		current_chunk++;
 	}
 	sort_three(a);
 }
 
-static void	merge_stack(t_stack *a, t_stack *b) 
+static void	merge_stack(t_stack *a, t_stack *b)
 {
 	t_node	*best_move;
 
-   	while (b->size) 
+	while (b->size)
 	{
-        best_move = find_best_node(a, b);
-        execute_move(a, b, best_move);
-    }    
-    align_stack(a);
+		best_move = find_best_node(a, b);
+		execute_move(a, b, best_move);
+	}
+	align_stack(a);
 }
 
 void	sort_stack(t_stack *a, t_stack *b)
 {
 	sort_chunk(a, b);
-    merge_stack(a, b);
+	merge_stack(a, b);
 }
 
 void	push_swap(t_stack *a, t_stack *b)

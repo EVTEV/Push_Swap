@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   best_place.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acaes <acaes@student.s19.be>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/24 23:47:55 by acaes             #+#    #+#             */
+/*   Updated: 2025/02/24 23:47:55 by acaes            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/push_swap.h"
 
 static int	*sorted_array(t_stack *a)
 {
 	t_node	*temp;
-    int		*sorted;
-    int		i;
+	int		*sorted;
+	int		i;
 
 	if (!a->top)
 		return (NULL);
@@ -22,16 +34,16 @@ static int	*sorted_array(t_stack *a)
 	return (sorted);
 }
 
-static t_node	*compare_target(t_stack *a, int sorted_value, int value, int *min_diff)
+static t_node	*compare(t_stack *a, int sorted, int value, int *min_diff)
 {
 	t_node	*found;
 	t_node	*best_target;
 
 	best_target = NULL;
-	if (sorted_value > value && sorted_value - value < *min_diff)
+	if (sorted > value && sorted - value < *min_diff)
 	{
-		*min_diff = sorted_value - value;
-		found = find_node_by_value(a, sorted_value);
+		*min_diff = sorted - value;
+		found = find_node_by_value(a, sorted);
 		if (found)
 			best_target = found;
 	}
@@ -41,11 +53,11 @@ static t_node	*compare_target(t_stack *a, int sorted_value, int value, int *min_
 static t_node	*find_best_target(t_stack *a, int *sorted, int value)
 {
 	t_node	*best_target;
-    t_node	*current_target;
-    int		min_diff;
-    int		left;
-    int		right;
-    int		mid;
+	t_node	*current_target;
+	int		min_diff;
+	int		left;
+	int		right;
+	int		mid;
 
 	best_target = NULL;
 	min_diff = INT_MAX;
@@ -54,7 +66,7 @@ static t_node	*find_best_target(t_stack *a, int *sorted, int value)
 	while (left <= right)
 	{
 		mid = left + (right - left) / 2;
-		current_target = compare_target(a, sorted[mid], value, &min_diff);
+		current_target = compare(a, sorted[mid], value, &min_diff);
 		if (current_target)
 			best_target = current_target;
 		if (sorted[mid] < value)
@@ -68,7 +80,7 @@ static t_node	*find_best_target(t_stack *a, int *sorted, int value)
 t_node	*find_target_position(t_stack *a, int value)
 {
 	t_node	*best_target;
-    int		*sorted;
+	int		*sorted;
 
 	sorted = sorted_array(a);
 	if (!sorted)
@@ -79,4 +91,3 @@ t_node	*find_target_position(t_stack *a, int value)
 		return (best_target);
 	return (get_min_node(a));
 }
-

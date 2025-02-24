@@ -23,9 +23,9 @@ typedef struct s_pos
 
 typedef struct s_cost
 {
-	int cost_a;
-	int cost_b;
-	int total;
+	int	cost_a;
+	int	cost_b;
+	int	total;
 }	t_cost;
 
 typedef struct s_node
