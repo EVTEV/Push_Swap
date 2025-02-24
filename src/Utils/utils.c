@@ -73,3 +73,17 @@ void	msg_error(t_stack *a, t_stack *b)
 		free_stack(b);
 	exit(1);
 }
+
+void	free_error(char **tab, t_stack *a, t_stack *b)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+	msg_error(a, b);
+}

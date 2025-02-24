@@ -88,10 +88,10 @@ void	do_split(char **av, t_stack *a, t_stack *b)
 	while (num[i])
 	{
 		if (!is_number(num[i]))
-			msg_error(a, b);
+			free_error(num, a, b);
 		value = ft_atol(num[i]);
 		if (value > INT_MAX || value < INT_MIN)
-			msg_error(a, b);
+			free_error(num, a, b);
 		fill_stack(a, value);
 		free(num[i]);
 		i++;

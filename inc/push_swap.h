@@ -104,5 +104,6 @@ int		get_chunk_size(int size);
 int		is_sorted(t_stack *stack);
 void	align_stack(t_stack *a);
 void	msg_error(t_stack *a, t_stack *b);
+void	free_error(char **tab, t_stack *a, t_stack *b);
 
 #endif
