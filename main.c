@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "inc/push_swap.h"
-
+/*
 static void	print_stack(t_stack *stack, char *msg)
 {
 	t_node	*current;
@@ -26,7 +26,7 @@ static void	print_stack(t_stack *stack, char *msg)
 		current = current->next;
 	}
 }
-
+*/
 int	main(int ac, char **av)
 {
 	t_stack	*a;
@@ -45,7 +45,6 @@ int	main(int ac, char **av)
 	}
 	fill_good(ac, av, a, b);
 	push_swap(a, b);
-	print_stack(a, "\n");
 	free_stack(a);
 	free_stack(b);
 	return (0);

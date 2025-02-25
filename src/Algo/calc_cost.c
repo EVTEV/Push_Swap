@@ -55,38 +55,6 @@ static t_cost	calculate_cost(t_stack *a, t_stack *b, t_node *node)
 	return (cost);
 }
 
-/*
-t_node	*find_best_node(t_stack *a, t_stack *b)
-{
-	t_cost	cost;
-	t_cost	best_cost;
-	t_node	*current;
-	t_node	*best_node;
-	int		min_cost;
-
-	current = b->top;
-	best_node = NULL;
-	min_cost = INT_MAX;
-	while (current)
-	{
-		cost = calculate_cost(a, b, current);
-		if (cost.total < min_cost)
-		{
-			min_cost = cost.total;
-			best_node = current;
-		}
-		else if (cost.total == min_cost)
-		{
-			best_cost = calculate_cost(a, b, best_node);
-			if (abs_val(cost.cost_a) + abs_val(cost.cost_b)
-				< abs_val(best_cost.cost_a) + abs_val(best_cost.cost_b))
-				best_node = current;
-		}
-		current = current->next;
-	}
-	return (best_node);
-}*/
-
 static t_node	*compare_best(t_context *context, t_node *current)
 {
 	t_cost	cost;
