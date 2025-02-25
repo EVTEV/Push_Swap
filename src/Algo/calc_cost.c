@@ -19,23 +19,16 @@ static int	abs_val(int n)
 	return (n);
 }
 
-static int	get_cost_a(t_stack *a, t_node *target)
+static int	get_cost(t_stack *stack, t_node *node, int is_stack_a)
 {
 	int	pos;
+	int	size;
 
-	pos = get_node_position(a, target);
-	if (pos > a->size / 2)
-		return (-(a->size - pos));
-	return (pos);
-}
-
-static int	get_cost_b(t_stack *b, t_node *node)
-{
-	int	pos;
-
-	pos = get_node_position(b, node);
-	if (pos > b->size / 2)
-		return (-(b->size - pos));
+	(void)is_stack_a;
+	pos = get_node_position(stack, node);
+	size = stack->size;
+	if (pos > size / 2)
+		return (-(size - pos));
 	return (pos);
 }
 
@@ -46,8 +39,8 @@ static t_cost	calculate_cost(t_stack *a, t_stack *b, t_node *node)
 	int		max_abs;
 
 	target = find_target_position(a, node->value);
-	cost.cost_b = get_cost_b(b, node);
-	cost.cost_a = get_cost_a(a, target);
+	cost.cost_b = get_cost(b, node, 0);
+	cost.cost_a = get_cost(a, target, 1);
 	if ((cost.cost_a > 0 && cost.cost_b > 0)
 		|| (cost.cost_a < 0 && cost.cost_b < 0))
 	{
@@ -62,6 +55,7 @@ static t_cost	calculate_cost(t_stack *a, t_stack *b, t_node *node)
 	return (cost);
 }
 
+/*
 t_node	*find_best_node(t_stack *a, t_stack *b)
 {
 	t_cost	cost;
@@ -91,4 +85,43 @@ t_node	*find_best_node(t_stack *a, t_stack *b)
 		current = current->next;
 	}
 	return (best_node);
+}*/
+
+static t_node	*compare_best(t_context *context, t_node *current)
+{
+	t_cost	cost;
+	t_cost	best_cost;
+
+	cost = calculate_cost(context->a, context->b, current);
+	if (cost.total < context->min_cost)
+	{
+		context->min_cost = cost.total;
+		return (current);
+	}
+	if (cost.total == context->min_cost)
+	{
+		best_cost = calculate_cost(context->a, context->b, context->best_node);
+		if (abs_val(cost.cost_a) + abs_val(cost.cost_b)
+			< abs_val(best_cost.cost_a) + abs_val(best_cost.cost_b))
+			return (current);
+	}
+	return (context->best_node);
+}
+
+t_node	*find_best_node(t_stack *a, t_stack *b)
+{
+	t_context	context;
+	t_node		*current;
+
+	context.a = a;
+	context.b = b;
+	context.best_node = NULL;
+	context.min_cost = INT_MAX;
+	current = b->top;
+	while (current)
+	{
+		context.best_node = compare_best(&context, current);
+		current = current->next;
+	}
+	return (context.best_node);
 }

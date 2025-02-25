@@ -49,7 +49,7 @@ static t_node	*compare(t_stack *a, int sorted, int value, int *min_diff)
 	}
 	return (best_target);
 }
-
+/*
 static t_node	*find_best_target(t_stack *a, int *sorted, int value)
 {
 	t_node	*best_target;
@@ -73,6 +73,32 @@ static t_node	*find_best_target(t_stack *a, int *sorted, int value)
 			left = mid + 1;
 		else
 			right = mid - 1;
+	}
+	return (best_target);
+}
+*/
+
+static t_node	*find_best_target(t_stack *a, int *sorted, int value)
+{
+	t_node	*best_target;
+	t_node	*current;
+	int		diff;
+	int		left;
+	int		right;
+
+	best_target = NULL;
+	diff = INT_MAX;
+	left = 0;
+	right = a->size - 1;
+	while (left <= right)
+	{
+		current = compare(a, sorted[left + (right - left) / 2], value, &diff);
+		if (current)
+			best_target = current;
+		if (sorted[left + (right - left) / 2] < value)
+			left = (left + (right - left) / 2) + 1;
+		else
+			right = (left + (right - left) / 2) - 1;
 	}
 	return (best_target);
 }

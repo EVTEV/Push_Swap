@@ -41,6 +41,14 @@ typedef struct s_stack
 	int		size;
 }	t_stack;
 
+typedef struct s_context
+{
+	t_stack	*a;
+	t_stack	*b;
+	t_node	*best_node;
+	int		min_cost;
+}	t_context;
+
 // ---------- Stack ---------- //
 t_stack	*init_stack(void);
 void	fill_stack(t_stack *stack, int value);
