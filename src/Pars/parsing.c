@@ -97,6 +97,8 @@ void	do_split(char **av, t_stack *a, t_stack *b)
 		i++;
 	}
 	free(num);
+	if (!check_dup(a))
+		msg_error(a, b);
 }
 
 void	fill_good(int ac, char **av, t_stack *a, t_stack *b)
