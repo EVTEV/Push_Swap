@@ -34,10 +34,20 @@ void	sort_three(t_stack *a)
 void	sort_four(t_stack *a, t_stack *b)
 {
 	t_node	*min;
+	int		position;
 
 	min = get_min_node(a);
-	while (a->top != min)
-		ra(a);
+	position = get_node_position(a, min);
+	if (position <= 2)
+	{
+		while (a->top != min)
+			ra(a);
+	}
+	else
+	{
+		while (a->top != min)
+			rra(a);
+	}
 	pb(b, a);
 	sort_three(a);
 	pa(a, b);
@@ -45,19 +55,25 @@ void	sort_four(t_stack *a, t_stack *b)
 
 void	sort_five(t_stack *a, t_stack *b)
 {
-	t_node	*m1;
-	t_node	*m2;
+	t_node	*m;
+	int		p;
+	int		i;
 
-	m1 = get_min_node(a);
-	while (a->top != m1)
-		ra(a);
-	pb(b, a);
-	m2 = get_max_node(a);
-	while (a->top != m2)
-		ra(a);
-	pb(b, a);
+	i = 0;
+	while (i < 2)
+	{
+		m = get_min_node(a);
+		p = get_node_position(a, m);
+		if (p <= (a->size / 2))
+			while (a->top != m)
+				ra(a);
+		else
+			while (a->top != m)
+				rra(a);
+		pb(b, a);
+		i++;
+	}
 	sort_three(a);
 	pa(a, b);
-	ra(a);
 	pa(a, b);
 }
